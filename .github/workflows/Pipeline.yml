@@ -33,8 +33,8 @@ jobs:
           versionSpec: '5.x'
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0.9.7
-        with:
-          targetPath: ReleaseTesting/BaseCode
+        #with:
+        #  targetPath: ReleaseTesting/BaseCode
       - name: Display GitVersion outputs
         run: |
           echo "Major: ${{ steps.gitversion.outputs.major }}"
