@@ -40,6 +40,7 @@ jobs:
         #  targetPath: ReleaseTesting/BaseCode
       - name: Display GitVersion outputs
         run: |
+          echo "version: $GITHUB_ENV"
           echo "Major: ${{ steps.gitversion.outputs.major }}"
           echo "Minor: ${{ steps.gitversion.outputs.minor }}"
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
