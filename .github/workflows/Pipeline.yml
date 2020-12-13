@@ -24,8 +24,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: Fetch all history for all tags and branches
+        run: git fetch --prune
         
-      - run: dotnet build ReleaseTesting/BaseCode/BaseCode.csproj 
+      - name: build project
+        run: dotnet build ReleaseTesting/BaseCode/BaseCode.csproj 
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
