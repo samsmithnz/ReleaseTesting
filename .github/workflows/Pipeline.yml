@@ -26,6 +26,7 @@ jobs:
   createVersionAndRelease:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    needs: [build]
     steps:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
