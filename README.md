@@ -1,3 +1,3 @@
 # ReleaseTesting
 
-Learning how to use GitVersion. Upgrading to V1.4.1
+Learning how to use GitVersion. Upgrading to V2.0.0
