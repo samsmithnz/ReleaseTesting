@@ -1,8 +1,3 @@
 # ReleaseTesting
 
-Learning how to use GitVersion. Upgrading to V2.2.1
-
-update 5
-update 6
-update 7
-
+Learning how to use GitVersion. Upgrading to V2.3.0
