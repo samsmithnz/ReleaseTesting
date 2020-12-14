@@ -73,3 +73,17 @@ jobs:
           echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
           echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}":  
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+          release_name: Release ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+          #body: |
+          #  Changes in this Release
+          #  - First Change
+          #  - Second Change
+          draft: false
+          prerelease: false
