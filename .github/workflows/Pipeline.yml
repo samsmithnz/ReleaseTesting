@@ -17,9 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0   
+      - uses: actions/checkout@v2 
       - name: build project
         run: dotnet build ReleaseTesting/BaseCode/BaseCode.csproj 
   
@@ -28,6 +26,9 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: [build]
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0   
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
