@@ -78,7 +78,7 @@ jobs:
   createRelease:
     runs-on: ubuntu-latest
     #if: and(github.ref == 'refs/heads/main', env.version != "")
-    if: version != ""
+    if: env.version != ""
     needs: [createVersion]
     steps:
     - name: Create Release
