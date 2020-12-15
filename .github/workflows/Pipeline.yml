@@ -72,7 +72,7 @@ jobs:
         echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
         echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
         echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
-        echo "Version=${{ steps.gitversion.outputs.commitDate }}" >> $GITHUB_ENV
+        echo "version=${{ steps.gitversion.outputs.commitDate }}" >> $GITHUB_ENV
 
 
   createRelease:
@@ -86,8 +86,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ env.Version }}
-        release_name: Release ${{ env.Version }}
+        tag_name: ${{ env.version }}
+        release_name: Release ${{ env.version }}
         #body: |
         #  Changes in this Release
         #  - First Change
