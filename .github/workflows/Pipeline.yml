@@ -13,6 +13,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  version: ""
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +26,6 @@ jobs:
   
   createVersion:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     needs: [build]
     steps:
     - uses: actions/checkout@v2
@@ -69,11 +71,13 @@ jobs:
         echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
         echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
         echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
-        echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}":  
+        echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
+        ${{ env.Version }} = steps.gitversion.outputs.nuGetVersionV2
+
 
   createRelease:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: and(github.ref == 'refs/heads/main',${{ env.version }} != "")
     needs: [createVersion]
     steps:
     - name: Create Release
@@ -82,8 +86,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
-        release_name: Release ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        tag_name: ${{ env.Version }}
+        release_name: Release ${{ env.Version }}
         #body: |
         #  Changes in this Release
         #  - First Change
