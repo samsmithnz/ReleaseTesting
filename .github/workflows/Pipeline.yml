@@ -72,7 +72,7 @@ jobs:
         echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
         echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
         echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
-        ${{ env.Version }} = steps.gitversion.outputs.nuGetVersionV2
+        echo "Version=${{ steps.gitversion.outputs.commitDate }}" >> $GITHUB_ENV
 
 
   createRelease:
