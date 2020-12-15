@@ -81,6 +81,9 @@ jobs:
     #if: createVersion.steps.gitversion.outputs.nuGetVersionV2 != ""
     needs: [createVersion]
     steps:
+    - name: Display GitVersion outputs
+      run: |
+        echo "version: ${{ steps.gitversion.outputs.nuGetVersionV2 }}" 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
