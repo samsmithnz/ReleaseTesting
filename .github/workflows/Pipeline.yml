@@ -72,13 +72,13 @@ jobs:
         echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
         echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
         echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
-        echo "version=${{ steps.gitversion.outputs.commitDate }}" >> $GITHUB_ENV
+        echo "version=${{ steps.gitversion.outputs.nuGetVersionV2 }}" >> $GITHUB_ENV
 
 
   createRelease:
     runs-on: ubuntu-latest
     #if: and(github.ref == 'refs/heads/main', env.version != "")
-    if: env.version != ""
+    if: createVersion.steps.gitversion.outputs.nuGetVersionV2 != ""
     needs: [createVersion]
     steps:
     - name: Create Release
