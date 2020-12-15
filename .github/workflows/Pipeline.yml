@@ -73,7 +73,6 @@ jobs:
         echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
         echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
         echo "version: ${{ steps.gitversion.outputs.nuGetVersionV2 }}" 
-        #echo "version: ${{ createVersion.steps.gitversion.outputs.nuGetVersionV2 }}" 
 
 
   createRelease:
