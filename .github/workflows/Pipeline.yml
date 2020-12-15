@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     outputs: # https://stackoverflow.com/questions/59175332/using-output-from-a-previous-job-in-a-new-one-in-a-github-action
-      version: ${{ steps.gitversion.outputs.major }}
+      version: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
     steps:
     - uses: actions/checkout@v2
       with:
